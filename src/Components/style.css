@@ -1,0 +1,344 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=Poppins:wght@300&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --primary-color: beige;
+  --secondary-color: rgb(245, 126, 57);
+}
+body {
+  background-color: var(--primary-color);
+}
+html {
+  font-size: 75.5%;
+}
+.header {
+  width: 100%;
+  height: 400px;
+  color: var(--secondary-color);
+  box-shadow: 0 0 10px var(--secondary-color);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(bg1.png);
+  z-index: -1;
+}
+.row2 {
+  position: absolute;
+  top: 23%;
+  right: 39%;
+  text-align: center;
+}
+.row2 h2 {
+  font-size: 3rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+  /* font-family: "Bodoni Moda", serif; */
+}
+.row2 img {
+  margin-top: 30px;
+  width: 250px;
+}
+.row1 h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-left: 35px;
+  font-family: "Bodoni Moda", serif;
+}
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search input {
+  outline: 0;
+  border: 0;
+  width: 350px;
+  height: 55px;
+  padding: 0 0.6rem;
+  border-radius: 4px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.search button {
+  outline: none;
+  border: none;
+  height: 55px;
+  padding: 0.2rem 0.5rem;
+  margin-left: -5.5px;
+  border-radius: 4px;
+  background-color: white;
+}
+.container {
+  width: 65%;
+  margin: 5% auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
+  grid-gap: 115px;
+  box-sizing: border-box;
+}
+.card {
+  width: 290px;
+  height: 470px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0 17px #aaa;
+}
+.card:hover {
+  transform: scale(0.95);
+  background-color: rgb(243, 226, 203);
+}
+.card img {
+  width: 50%;
+  height: 240px;
+  border-radius: 5px 5px 0 0;
+}
+.card .bottom {
+  display: flex;
+  flex-direction: column;
+}
+.card .bottom .title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  padding: 1%;
+  
+}
+.card .bottom .author {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 7px;
+  color: black;
+  text-align: justify;
+  position: absolute;
+  bottom: 0%;
+  left: 5%;
+}
+
+.card .bottom .publish-date {
+  font-size: 14px;
+  color: rgb(42, 42, 42);
+  position: absolute;
+  bottom: 1%;
+  right: 5%;
+}
+.card .bottom .publish-info {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.card .bottom .publisher {
+  padding-right: 5px;
+  font-size: 14px;
+}
+
+.card .ratings-container {
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+.info-ratings {
+  font-size: 19px;
+  color: rgb(255, 187, 0);
+  padding-right: 15px;
+}
+.card .rating {
+  font-size: 19px;
+  color: rgb(255, 187, 0);
+}
+.info-ratings-cont {
+  display: flex;
+}
+.overlay {
+  min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0.3;
+  background: linear-gradient(rgba(212, 206, 206, 0.2), rgba(225, 206, 206, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.overlay-inner {
+  background: white;
+  width: 770px;
+  height: fit-content;
+  padding: 1.5rem;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: 1.3rem;
+}
+.overlay-inner .close {
+  position: absolute;
+  top: 0rem;
+  right: 1.5rem;
+  outline: none;
+  border: none;
+  font-size: 3rem;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+.overlay-inner .inner-box {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.overlay-inner .inner-box img {
+  margin-right: 30px;
+  width: 150px;
+  height: 200px;
+}
+.overlay-inner .inner-box h3 {
+  margin-top: 10px;
+  color: green;
+}
+.overlay-inner .inner-box h4 {
+  color: blue;
+}
+.overlay-inner .inner-box button {
+  outline: none;
+  border: none;
+  width: 150px;
+  border-radius: 5px;
+  background-color: #24a0ed;
+  color: white;
+  font-weight: bold;
+  padding: 0.7rem 0.5rem;
+  cursor: pointer;
+}
+.download {
+  margin-left: 10px;
+}
+.overlay-inner .description {
+  margin-top: 3rem;
+  text-align: justify;
+  font-size: 13px;
+}
+
+#signInDiv::before {
+ content: 'LOG IN TO START BROWSING!';
+ color: var(--primary-color);
+ font-size: 6rem;
+ align-self: center;
+}
+#signInDiv {
+  margin: 0 auto;
+  font-weight: bold;
+  padding-top: 18%;
+  background: linear-gradient(rgba(0, 0, 0, 0.604), rgba(0, 0, 0, 0.558)),
+  url(bg1.png);
+  height: 62vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-out-button {
+  width: 100px;
+  height: 23px;
+  border-radius: 15px;
+  background-color:var(--primary-color);
+  color: black;
+  border: 3px solid var(--secondary-color);
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 0.3rem 0.5rem;
+  margin: 10% auto;
+  cursor: pointer;
+}
+.sign-out-button:hover {
+  background-color: rgb(212, 198, 171);
+}
+@media (max-width: 1880px) {
+  .overlay-inner {
+    width: 500px;
+    height: 350px;
+  }
+  .overlay-inner .description {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  .row2 {
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    text-align: center;
+  }
+  .overlay-inner .description {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .header {
+    width: 100%;
+    height: 400px;
+    box-shadow: none;
+  }
+  .row2 {
+    position: absolute;
+    top: 20%;
+    right: 35%;
+    text-align: center;
+  }
+  .row2 h2 {
+    font-size: 2rem;
+  }
+  .search input {
+    width: 250px;
+    height: 35px;
+  }
+  .search button {
+    height: 35px;
+  }
+  .overlay-inner .description {
+    display: none;
+  }
+}
+@media (max-width:550px) {
+  .overlay-inner {
+    width: 300px;
+    height: 350px;
+  }
+}
+@media (max-width: 460px) {
+  .row2 {
+    position: absolute;
+    top: 0%;
+    left: 40%;
+    text-align: center;
+  }
+  .overlay-inner .description {
+    display: none;
+  }
+  .header {
+    height: 200px;
+  }
+}
