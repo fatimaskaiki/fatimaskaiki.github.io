@@ -276,6 +276,10 @@ html {
 .sign-out-button:hover {
   background-color: rgb(212, 198, 171);
 }
+h3 {
+  margin: 0 auto;
+  font-size: 1.6rem;
+}
 @media (max-width: 1880px) {
   .overlay-inner {
     width: 500px;

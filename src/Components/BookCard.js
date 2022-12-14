@@ -5,15 +5,13 @@ import Star from "./Star";
 function BookCard({ book }) {
   const [show, setShow] = useState(false);
   const [bookItem, setItem] = useState();
-
-  console.log(book);
   return (
     <>
       {book.map((item) => {
         let thumbnail =
           item.volumeInfo.imageLinks &&
           item.volumeInfo.imageLinks.smallThumbnail;
-        if (thumbnail != undefined) {
+        if (thumbnail !== undefined) {
           return (
             <>
               <div

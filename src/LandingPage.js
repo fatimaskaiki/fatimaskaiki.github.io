@@ -8,9 +8,7 @@ function LandingPage() {
   const [user, setUser] = useState({});
 
   function handleCallbackResponse(response) {
-    console.log("Encoded JWT ID tokent: " + response.credential);
     var userObject = jwt_decode(response.credential);
-    console.log(userObject);
     setUser(userObject);
     document.getElementById("signInDiv").hidden = true;
   }
@@ -37,7 +35,6 @@ function LandingPage() {
   function isEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
-  console.log("user", isEmpty(user));
 
   return (
     <>
