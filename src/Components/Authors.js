@@ -6,7 +6,16 @@ import axios from 'axios'
 function Author({user, setUser}) {
   const [search, setSearch] = useState("");
   const [bookData,setData]=useState([]);
+  const [allBooks, setAllBooks] = useState([]);
 
+  // const getAllBooks = (e) => {
+  //   axios.get('https://www.googleapis.com/books/v1/volumes?q' +
+  //   '&orderBy=newest' +
+  //   // '&filter=free-ebooks'+
+  //   '&key=AIzaSyDkfqaTnArpMe76VO0BWNIWdDbut1A4-XM')
+  //   .then(res=> setAllBooks(res.data.items))
+  //   console.log(allBooks)
+  // }
   const searchBook = (event) => {
     if (event.key === "Enter") {
       axios.get('https://www.googleapis.com/books/v1/volumes?q=inauthor:'+search+
@@ -38,7 +47,7 @@ function handleSignOut(event) {
         </div>
         <div className="row2">
           <h2>Find Your Book </h2>
-          <div className="search">
+          <div id="search">
             <input
               type="text"
               placeholder="Search for an author..."
@@ -46,6 +55,7 @@ function handleSignOut(event) {
               onChange={(e) => setSearch(e.target.value)}
               onKeyPress={searchBook}
               />
+              {console.log(search)}
             <button>
               <BiSearchAlt2 style={{ fontSize: "30px", color: "rgb(245, 126, 57)", paddingTop: "6px" }} />
             </button>
@@ -59,7 +69,12 @@ function handleSignOut(event) {
         </div>
       </div>
       <div className="container">
-        { bookData &&
+        {
+        //   search.length == 0 ?
+        // allBooks && 
+        // <Card book ={allBooks}/>
+        // : 
+        bookData &&
         bookData.length !== 0 ?
         <Card book={bookData} />
         : <h3>Oops, this author doesn't exist!</h3>
