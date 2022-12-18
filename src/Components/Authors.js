@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./BookCard";
 import { BiSearchAlt2 } from "react-icons/bi";
 import axios from "axios";
@@ -40,7 +40,11 @@ function Author({ user, setUser }) {
         .catch((err) => console.log(err));
     }
   };
+ useEffect (() => {
+  searchBook()
+ }, [search])
 
+ 
   //   const sortedBooks =
   //   bookData.sort((a, b) => {
   //     return parseInt(b.volumeInfo.publishedDate) - parseInt(a.volumeInfo.publishedDate)
@@ -48,9 +52,10 @@ function Author({ user, setUser }) {
 
   const PER_PAGE = 10;
   const offset = currentPage * PER_PAGE;
-  const currentPageData = bookData
+  const currentPageData = bookData && 
+  bookData
     .slice(offset, offset + PER_PAGE);
-    const pageCount = Math.ceil(bookData.length / PER_PAGE);
+    const pageCount = Math.ceil(bookData && bookData.length / PER_PAGE);
 
   function handlePageClick({ selected: selectedPage }) {
       setCurrentPage(selectedPage);
@@ -93,12 +98,13 @@ function Author({ user, setUser }) {
         </div>
       </div>
       <div className="container">
-        {currentPageData && currentPageData.length !== 0 ? (
-          <>
+        {bookData && bookData.length !== 0 ? (
           <Card book={currentPageData} />
-          
-          <div>
-              <ReactPaginate
+        ) : (
+          <h3>Oops, this author doesn't exist!</h3>
+        )}
+      </div>
+      <ReactPaginate
         previousLabel={"← Previous"}
         nextLabel={"Next →"}
         pageCount={pageCount}
@@ -109,12 +115,6 @@ function Author({ user, setUser }) {
         disabledClassName={"link-disabled"}
         activeClassName={"link-active"}
       />
-          </div>
-          </>
-        ) : (
-          <h3>Oops, this author doesn't exist!</h3>
-        )}
-      </div>
     </>
   );
 }
