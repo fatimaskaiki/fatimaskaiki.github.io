@@ -1,25 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./BookCard";
 import { BiSearchAlt2 } from "react-icons/bi";
 import axios from "axios";
-import ReactPaginate from 'react-paginate'
+import ReactPaginate from "react-paginate";
 
 function Author({ user, setUser }) {
   const [search, setSearch] = useState("");
   const [bookData, setData] = useState([]);
-
-  const [pageNumber, setPageNumber] = useState(0)
-  const booksPerPage = 30
-  const pagesVisited = pageNumber * booksPerPage 
+  const [currentPage, setCurrentPage] = useState(0);
 
   const apiKey = "AIzaSyDkfqaTnArpMe76VO0BWNIWdDbut1A4-XM";
 
   const searchBook = (event) => {
-     if (search !== " ") {
+    if (search !== " ") {
       axios
         .get(
           "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
             search +
+            "&maxResults=40" +
             "&orderBy=newest" +
             // '&filter=free-ebooks'+
             "&key=" +
@@ -28,22 +26,40 @@ function Author({ user, setUser }) {
         .then((res) => setData(res.data.items))
         .catch((err) => console.log(err));
     } else if (event.key === "Enter") {
-      axios.get(
-        "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
-          search +
-          "&orderBy=newest" +
-          // '&filter=free-ebooks'+
-          "&key=" +
-          apiKey
-      ).then((res) => setData(res.data.items))
-      .catch((err) => console.log(err));
+      axios
+        .get(
+          "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
+            search +
+            "&maxResults=40" +
+            "&orderBy=newest" +
+            // '&filter=free-ebooks'+
+            "&key=" +
+            apiKey
+        )
+        .then((res) => setData(res.data.items))
+        .catch((err) => console.log(err));
     }
   };
+ useEffect (() => {
+  searchBook()
+ }, [search])
 
+ 
   //   const sortedBooks =
   //   bookData.sort((a, b) => {
   //     return parseInt(b.volumeInfo.publishedDate) - parseInt(a.volumeInfo.publishedDate)
   // })
+
+  const PER_PAGE = 10;
+  const offset = currentPage * PER_PAGE;
+  const currentPageData = bookData && 
+  bookData
+    .slice(offset, offset + PER_PAGE);
+    const pageCount = Math.ceil(bookData && bookData.length / PER_PAGE);
+
+  function handlePageClick({ selected: selectedPage }) {
+      setCurrentPage(selectedPage);
+  }
 
   function handleSignOut(event) {
     setUser({});
@@ -83,13 +99,22 @@ function Author({ user, setUser }) {
       </div>
       <div className="container">
         {bookData && bookData.length !== 0 ? (
-          <Card book={bookData}
-          pagesVisited = {pagesVisited}
-          booksPerPage = {booksPerPage} />
+          <Card book={currentPageData} />
         ) : (
           <h3>Oops, this author doesn't exist!</h3>
         )}
       </div>
+      <ReactPaginate
+        previousLabel={"← Previous"}
+        nextLabel={"Next →"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"paginationBtns"}
+        previousLinkClassName={"pagination-link"}
+        nextLinkClassName={"pagination-link"}
+        disabledClassName={"link-disabled"}
+        activeClassName={"link-active"}
+      />
     </>
   );
 }

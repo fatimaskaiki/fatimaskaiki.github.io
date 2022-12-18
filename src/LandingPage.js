@@ -10,7 +10,7 @@ function LandingPage() {
   function handleCallbackResponse(response) {
     var userObject = jwt_decode(response.credential);
     setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
   }
 
   useEffect(() => {

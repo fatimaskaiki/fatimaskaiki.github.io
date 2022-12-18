@@ -280,6 +280,39 @@ h3 {
   margin: 0 auto;
   font-size: 1.6rem;
 }
+
+.paginationBtns {
+  width: 100%;
+  margin-bottom: 4%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+.paginationBtns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+}
+.paginationBtns a:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.link-disabled a{
+ background-color: rgb(200, 200, 200);
+ color:white;
+}
+.link-disabled a:hover {
+  background-color: rgb(200, 200, 200);
+  cursor: unset;
+  
+}
+.link-active a{
+  background-color: var(--secondary-color);
+  color: white;
+}
 @media (max-width: 1880px) {
   .overlay-inner {
     width: 500px;
@@ -387,6 +420,18 @@ h3 {
   #signInDiv {
     padding-top: 45%;
    }
+   .paginationBtns {
+    width: 80%;
+    margin-top: 10%;
+    margin-left: 14%;
+   }
+   .paginationBtns a {
+    padding: 8px;
+    margin: 4px;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+  }
 }
 @media (max-width: 390px) {
   #signInDiv::before {
