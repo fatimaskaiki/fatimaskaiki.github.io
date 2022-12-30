@@ -32,16 +32,21 @@ function LandingPage() {
     google.accounts.id.prompt();
   }, []);
 
+  function handleSignOut(e) {
+    setUser({});
+    document.getElementById("signInDiv").hidden = false;
+  }
+
   function isEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
-
   return (
     <>
       {!isEmpty(user) ?
       <Authors 
       user = {user}
-      setUser = {setUser}/>
+      handleSignOut = {handleSignOut}
+      />
       :
       <div id="signInDiv"></div>
       }
